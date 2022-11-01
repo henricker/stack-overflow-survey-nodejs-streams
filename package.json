@@ -1,0 +1,21 @@
+{
+  "name": "@henricker/process-data-streams-stack-overflow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "export NODE_ENV=dev && node ./src/index.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand --no-cache --watchAll --config jest.config.mjs",
+    "test:cov": "NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand --config jest.config.mjs --coverage"
+  },
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.10.0",
+    "split2": "^3.2.2",
+    "stream-concat": "^1.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
