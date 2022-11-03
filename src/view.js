@@ -37,6 +37,24 @@ export class View {
         this.screen.render();
     }
 
+    buildLineChart() {
+        if (this.lineChart) return;
+
+        this.lineChart = contrib.line(
+            {
+                left: 'center',
+                top: 'center',
+                border: 'line',
+                height: '100%',
+                width: '100%',
+                label: 'Frameworks Most Used per Year',
+                showLegend: true,
+                // abbreviate: true,
+            });
+
+        this.screen.append(this.lineChart);
+    }
+
     onProgressBarUpdate({ processedFiles, totalSizeFiles }) {
         const justProcessed = Math.ceil((processedFiles / totalSizeFiles) * 100)
 
@@ -48,6 +66,11 @@ export class View {
             { percent: justProcessed, label: 'processing...', 'color': 'green' },
         ]);
 
+        this.screen.render();
+    }
+
+    updateLineChart(lineChartData) {
+        this.lineChart.setData(lineChartData)
         this.screen.render();
     }
 }

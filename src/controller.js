@@ -18,15 +18,22 @@ export class Controller {
         this.view.onProgressBarUpdate(...args)
     }
 
-   async __init() {
-        const progressBarNotifier = new Event()        
-        progressBarNotifier.on('update', this.handleProgressBarUpdate.bind(this))
+    handleGraphUpdate(item) {
+        this.view.buildLineChart();
+        const lineChartData = this.service.onLineChartUpdate(item);
+        this.view.updateLineChart(lineChartData)
+    }
 
+   async __init() {
+        const progressBarNotifier = new Event() 
+        const graphNotifier = new Event()       
+        progressBarNotifier.on('update', this.handleProgressBarUpdate.bind(this))
+        graphNotifier.on('update', this.handleGraphUpdate.bind(this))
         
         this.view.initialize()
 
         try {
-            await this.service.runPipeline({ progressBarNotifier })
+            await this.service.runPipeline({ progressBarNotifier, graphNotifier })
         } catch(err) {
             console.error('Error', err)
         }

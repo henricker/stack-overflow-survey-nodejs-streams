@@ -1,14 +1,15 @@
 import { Controller } from './controller.js'
 import { Service } from './service.js'
 import { View } from './view.js'
+import config from './config.js'
 
-const surveys = [2019, 2018, 2017, 2016]
-const techs = ['react', 'vue', 'angular', 'ember']
+const outputFinal = './docs/final.json'
 
 const service = new Service({
-    surveys,
-    techs,
-    defaultSurveysFolder: './docs/state-of-js'
+    ...config,
+    defaultSurveysFolder: './docs/state-of-js',
+    outputFinal,
+
 })
 
 const view = new View()
